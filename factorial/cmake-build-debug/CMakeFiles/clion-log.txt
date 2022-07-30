@@ -1,0 +1,4 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/ninja -DCMAKE_CXX_COMPILER=/Library/Developer/CommandLineTools/usr/bin/g++ -G Ninja -S /Users/geges/CLionProjects/factorial -B /Users/geges/CLionProjects/factorial/cmake-build-debug
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/geges/CLionProjects/factorial/cmake-build-debug
