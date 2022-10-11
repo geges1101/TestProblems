@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
 
@@ -12,7 +11,7 @@ public class filePath {
 
         ArrayList<ArrayList<String>> paths = new ArrayList<>();
         for(int i = 0; i != n; i++){
-            String curr = sc.next();
+            String curr = sc.nextLine();
             all[i] = curr;
             if(curr.contains(".")){
                 int pos = 0;
@@ -24,18 +23,18 @@ public class filePath {
                     ArrayList<String> path = new ArrayList<>();
                     path.add(target);
                     int j = i - 1;
-                    while(j >= 0){
+                    while(j > 0){
                         curr = all[j];
                         int begin = 0;
                         while(curr.charAt(begin) == ' ')
                             begin++;
                         if(begin < pos){
                             path.add(curr.substring(begin, curr.length()));
+                            pos = begin;
                         }
-                        pos = begin;
-                        paths.add(path);
                         j--;
                     }
+                    paths.add(path);
                 }
             }
         }
