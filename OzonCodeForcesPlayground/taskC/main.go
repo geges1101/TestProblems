@@ -46,6 +46,12 @@ func main() {
 				res = append(res, []int{j + 1, idx + 1})
 			}
 		}
-		fmt.Fprintln(out, res)
+		for row := 0; row < length/2; row++ {
+			for column := 0; column < 2; column++ {
+				fmt.Print(res[row][column], " ")
+			}
+			fmt.Print("\n")
+		}
+		fmt.Println()
 	}
 }
