@@ -1,3 +1,3 @@
-module commonLetters
+module groupAnnagrams
 
 go 1.19

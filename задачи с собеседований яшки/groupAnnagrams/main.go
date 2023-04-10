@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-	"sort"
-	"strings"
 )
 
 //Sample Input ["eat", "tea", "tan", "ate", "nat", "bat"]
@@ -11,17 +9,18 @@ import (
 //
 //Т.е. сгруппировать слова по "общим буквам".
 
-func organize(words []string) [][]string {
-	dict := make(map[string][]string)
-	for _, word := range words {
-		s := strings.Split(word, "")
-		sort.Strings(s)
-		w := strings.Join(s, "")
-		dict[w] = append(dict[w], word)
+func organize(strs []string) [][]string {
+	mp := map[[26]int][]string{}
+	for _, s := range strs {
+		k := [26]int{}
+		for i := 0; i < len(s); i++ {
+			k[s[i]-'a'] += 1
+		}
+		mp[k] = append(mp[k], s)
 	}
 	var res [][]string
-	for _, group := range dict {
-		res = append(res, group)
+	for _, v := range mp {
+		res = append(res, v)
 	}
 	return res
 }
