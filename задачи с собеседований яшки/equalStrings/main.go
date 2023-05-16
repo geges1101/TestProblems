@@ -36,6 +36,7 @@ func equalStrings(s1, s2 string) bool {
 				x++
 				y++
 			}
+			break
 		}
 		i++
 		j++
@@ -44,5 +45,5 @@ func equalStrings(s1, s2 string) bool {
 }
 
 func main() {
-	fmt.Println(equalStrings("abcsd", "abcd"))
+	fmt.Println(equalStrings("aa", ""))
 }
