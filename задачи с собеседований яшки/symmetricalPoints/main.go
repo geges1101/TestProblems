@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 //Дан массив точек с целочисленными координатами (x, y).
 //Определить, существует ли вертикальная прямая, делящая точки на 2 симметричных относительно этой прямой множества.
@@ -11,26 +14,22 @@ type Point struct {
 }
 
 func isSymmetrical(points []Point) bool {
-	var max, min float64
-	max, min = float64(points[0].x), float64(points[0].x)
+	max, min := points[0].x, points[0].x
+	mp := make(map[string]bool)
 	for _, p := range points {
-		if float64(p.x) > max {
-			max = float64(p.x)
+		if p.x > max {
+			max = p.x
 		}
-		if float64(p.x) < min {
-			min = float64(p.x)
+		if p.x < min {
+			min = p.x
 		}
+		mp[strconv.Itoa(p.x)+"."+strconv.Itoa(p.y)] = true
 	}
-	var centerX = min + (max-min)/2
-	l, r := 0, len(points)-1
-	for l <= r {
-		var leftPoint, rightPoint float64
-		leftPoint, rightPoint = float64(points[l].x), float64(points[r].x)
-		if leftPoint+(rightPoint-leftPoint)/2 != centerX {
+	center := min + max
+	for _, p := range points {
+		if mp[strconv.Itoa(center-p.x)+"."+strconv.Itoa(p.y)] != true {
 			return false
 		}
-		l++
-		r--
 	}
 	return true
 }
@@ -38,15 +37,12 @@ func isSymmetrical(points []Point) bool {
 func main() {
 	fmt.Print(isSymmetrical([]Point{{
 		x: 0,
-		y: 4,
+		y: 3,
 	}, {
 		x: 6,
-		y: 1,
+		y: 3,
 	}, {
-		x: -1,
+		x: 3,
 		y: 1,
-	}, {
-		x: 5,
-		y: 0,
 	}}))
 }
