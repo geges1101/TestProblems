@@ -1,28 +1,23 @@
 package main
 
 func findAnagrams(s string, p string) (res []int) {
-	lnP := len(p)
-	if len(s) < lnP {
+	m := len(p)
+	if len(s) < m {
 		return res
 	}
 
-	const (
-		abcLen = 26
-		abcBeg = 'a'
-	)
-
-	sCnt, pCnt := [abcLen]int{}, [abcLen]int{}
-	for _, rn := range p {
-		pCnt[rn-abcBeg]++
+	dict, target := [26]int{}, [26]int{}
+	for _, v := range p {
+		target[v-'a']++
 	}
 
 	for i := range s {
-		sCnt[s[i]-abcBeg]++
-		if i >= lnP {
-			sCnt[s[i-lnP]-abcBeg]--
+		dict[s[i]-'a']++
+		if i >= m {
+			dict[s[i-m]-'a']--
 		}
-		if sCnt == pCnt {
-			res = append(res, i-lnP+1)
+		if dict == target {
+			res = append(res, i-m+1)
 		}
 	}
 
